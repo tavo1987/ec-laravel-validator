@@ -1,0 +1,135 @@
+<?php
+
+namespace Tests;
+
+class CustomValidationRulesTest extends TestCase
+{
+    public function test_validate_ci()
+    {
+        $data = [
+            'ci' => '0926687856',
+        ];
+
+        $rules = [
+            'ci' => 'ecuador:ci',
+            'ruc_priv'=> 'ecuador:ruc_spriv',
+            'ruc_pub'=> 'ecuador:ruc_spub',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertTrue($v->passes());
+    }
+
+    public function test_invalid_ci()
+    {
+        $rules = [
+            'ci' => 'ecuador:ci',
+        ];
+
+        $data = [
+            'ci'=> '0926687858',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertFalse($v->passes());
+
+    }
+
+    public function test_valid_ruc()
+    {
+        $rules = [
+            'ruc' => 'ecuador:ruc',
+        ];
+
+        $data = [
+            'ruc'=> '0926687856001',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertTrue($v->passes());
+
+    }
+
+    public function test_invalid_ruc()
+    {
+        $rules = [
+            'ruc' => 'ecuador:ruc',
+        ];
+
+        $data = [
+            'ruc'=> '09266878560001',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertFalse($v->passes());
+
+    }
+
+    public function test_valid_ruc_for_private_companies()
+    {
+        $rules = [
+            'ruc' => 'ecuador:ruc_spriv',
+        ];
+
+        $data = [
+            'ruc'=> '0992397535001',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertTrue($v->passes());
+
+    }
+
+    public function test_invalid_ruc_for_private_companies()
+    {
+        $rules = [
+            'ruc' => 'ecuador:ruc_spriv',
+        ];
+
+        $data = [
+            'ruc'=> '09923975350020',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertFalse($v->passes());
+
+    }
+
+    public function test_valid_ruc_for_public_companies()
+    {
+        $rules = [
+            'ruc' => 'ecuador:ruc_spub',
+        ];
+
+        $data = [
+            'ruc'=> '1760001550001',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertTrue($v->passes());
+
+    }
+
+    public function test_invalid_ruc_for_public_companies()
+    {
+        $rules = [
+            'ruc' => 'ecuador:ruc_spub',
+        ];
+
+        $data = [
+            'ruc'=> '17600015500010',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $this->assertFalse($v->passes());
+
+    }
+}
