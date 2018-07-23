@@ -3,8 +3,9 @@
 namespace Tavo\EcLaravelValidator\Tests;
 
 class CustomValidationRulesTest extends TestCase
-{
-    public function test_validate_ci()
+
+{   /** @test */
+    function valid_ci()
     {
         $data = [
             'ci' => '0926687856',
@@ -12,8 +13,6 @@ class CustomValidationRulesTest extends TestCase
 
         $rules = [
             'ci' => 'ecuador:ci',
-            'ruc_priv'=> 'ecuador:ruc_spriv',
-            'ruc_pub'=> 'ecuador:ruc_spub',
         ];
 
         $v = $this->app['validator']->make($data, $rules);
@@ -21,7 +20,8 @@ class CustomValidationRulesTest extends TestCase
         $this->assertTrue($v->passes());
     }
 
-    public function test_invalid_ci()
+    /** @test */
+    function invalid_ci()
     {
         $rules = [
             'ci' => 'ecuador:ci',
@@ -37,7 +37,8 @@ class CustomValidationRulesTest extends TestCase
 
     }
 
-    public function test_valid_ruc()
+    /** @test */
+    function valid_ruc()
     {
         $rules = [
             'ruc' => 'ecuador:ruc',
@@ -53,7 +54,8 @@ class CustomValidationRulesTest extends TestCase
 
     }
 
-    public function test_invalid_ruc()
+    /** @test */
+    function invalid_ruc()
     {
         $rules = [
             'ruc' => 'ecuador:ruc',
@@ -69,7 +71,8 @@ class CustomValidationRulesTest extends TestCase
 
     }
 
-    public function test_valid_ruc_for_private_companies()
+    /** @test */
+    function valid_ruc_for_private_companies()
     {
         $rules = [
             'ruc' => 'ecuador:ruc_spriv',
@@ -85,7 +88,8 @@ class CustomValidationRulesTest extends TestCase
 
     }
 
-    public function test_invalid_ruc_for_private_companies()
+    /** @test */
+    function invalid_ruc_for_private_companies()
     {
         $rules = [
             'ruc' => 'ecuador:ruc_spriv',
@@ -101,7 +105,8 @@ class CustomValidationRulesTest extends TestCase
 
     }
 
-    public function test_valid_ruc_for_public_companies()
+    /** @test */
+    function valid_ruc_for_public_companies()
     {
         $rules = [
             'ruc' => 'ecuador:ruc_spub',
@@ -117,7 +122,8 @@ class CustomValidationRulesTest extends TestCase
 
     }
 
-    public function test_invalid_ruc_for_public_companies()
+    /** @test */
+    function invalid_ruc_for_public_companies()
     {
         $rules = [
             'ruc' => 'ecuador:ruc_spub',
