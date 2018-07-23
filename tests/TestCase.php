@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tavo\EcLaravelValidator\Tests;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Tavo\EcLaravelValidator\EcValidatorServiceProvider;
