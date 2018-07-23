@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "tavo1987/ec-validador-cedula-ruc": "^1.0",
+        "php": "^7.1.3",
+        "tavo1987/ec-validador-cedula-ruc": "~1.0.2",
         "illuminate/validation": "^5.4",
         "illuminate/support": "^5.4"
     },
@@ -24,7 +24,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tavo\\EcLaravelValidator\\Tests\\": "tests/"
         }
     },
     "require-dev": {

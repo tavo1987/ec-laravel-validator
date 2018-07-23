@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tavo\EcLaravelValidator\Tests;
 
 class CustomValidationRulesTest extends TestCase
 {
