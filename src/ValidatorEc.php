@@ -8,26 +8,29 @@ use Tavo\ValidadorEc as ValidatorEcPackage;
 
 class ValidatorEc extends LaravelValidator
 {
+    private $isValid = false;
+
     public function validateEcuador($attribute, $value, $parameters)
     {
         $validatorEc = new ValidatorEcPackage();
 
         if ( $parameters[0] == 'ci' ) {
-            $result = $validatorEc->validarCedula($value);
-            $this->setCustomMessages([$validatorEc->getError()]);
+            $this->isValid = $validatorEc->validarCedula($value);
         } elseif ( $parameters[0] == 'ruc' ) {
-            $result = $validatorEc->validarRucPersonaNatural($value);
-            $this->setCustomMessages([$validatorEc->getError()]);
+            $this->isValid = $validatorEc->validarRucPersonaNatural($value);
         } elseif ( $parameters[0] == 'ruc_spub' ) {
-            $result = $validatorEc->validarRucSociedadPublica($value);
-            $this->setCustomMessages([$validatorEc->getError()]);
+            $this->isValid = $validatorEc->validarRucSociedadPublica($value);
         } elseif($parameters[0] == 'ruc_spriv'){
-            $result = $validatorEc->validarRucSociedadPrivada($value);
-            $this->setCustomMessages([$validatorEc->getError()]);
+            $this->isValid = $validatorEc->validarRucSociedadPrivada($value);
         }else{
             throw new Exception('Custom validation rule does not exist');
         }
 
-        return $result;
+        if ( !$this->isValid ) {
+            $this->setCustomMessages([$attribute => $validatorEc->getError()]);
+            return $this->isValid;
+        }
+
+        return $this->isValid ;
     }
 }
