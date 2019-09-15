@@ -2,9 +2,9 @@
 
 namespace Tavo\EcLaravelValidator;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
-use Validator;
 
 class EcValidatorServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class EcValidatorServiceProvider extends ServiceProvider
     public function boot()
     {
         Validator::resolver(function ($translator, $data, $rules, $messages) {
-            return new  ValidatorEc($translator, $data, $rules, $messages);
+            return new  LaravelValidatorEc($translator, $data, $rules, $messages);
         });
     }
 
