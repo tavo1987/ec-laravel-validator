@@ -2,29 +2,33 @@
 
 namespace Tavo\EcLaravelValidator;
 
+use Error;
 use Illuminate\Validation\Validator;
 use Tavo\ValidadorEc;
 
-class ValidatorEc extends Validator
+class LaravelValidatorEc extends Validator
 {
     private $isValid = false;
 
+    private $types = [
+      'ci'        => 'validarCedula',
+      'ruc'       => 'validarRucPersonaNatural',
+      'ruc_spub'  => 'validarRucSociedadPublica',
+      'ruc_spriv' => 'validarRucSociedadPrivada'
+    ];
+
     public function validateEcuador($attribute, $value, $parameters)
     {
-        $validatorEc = new ValidadorEc();
-
-        if ( $parameters[0] == 'ci' ) {
-            $this->isValid = $validatorEc->validarCedula($value);
-        } elseif ( $parameters[0] == 'ruc' ) {
-            $this->isValid = $validatorEc->validarRucPersonaNatural($value);
-        } elseif ( $parameters[0] == 'ruc_spub' ) {
-            $this->isValid = $validatorEc->validarRucSociedadPublica($value);
-        } elseif($parameters[0] == 'ruc_spriv'){
-            $this->isValid = $validatorEc->validarRucSociedadPrivada($value);
+        $validator = new ValidadorEc();
+        try {
+            $this->isValid = $validator->{$this->types[$parameters[0]]}($value);
+        } catch (\Exception $exception) {
+            throw new Error("Custom validation rule ecuador:{$parameters[0]} does not exist");
         }
 
+
         if ( !$this->isValid ) {
-            $error = strtolower($validatorEc->getError());
+            $error = strtolower($validator->getError());
             $this->setCustomMessages(["{$attribute} : {$error}"]);
 
             return $this->isValid;
