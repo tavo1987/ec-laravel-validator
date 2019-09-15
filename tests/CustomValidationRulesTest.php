@@ -2,6 +2,8 @@
 
 namespace Tavo\EcLaravelValidator\Tests;
 
+use Error;
+
 class CustomValidationRulesTest extends TestCase
 
 {   /** @test */
@@ -137,5 +139,23 @@ class CustomValidationRulesTest extends TestCase
 
         $this->assertFalse($v->passes());
 
+    }
+
+    /** @test */
+    function invalid_attribute_throw_an_error()
+    {
+        $this->expectException(Error::class);
+
+        $rules = [
+            'ruc' => 'ecuador:fake',
+        ];
+
+        $data = [
+            'ruc'=> '17600015500010',
+        ];
+
+        $v = $this->app['validator']->make($data, $rules);
+
+        $v->validate();
     }
 }
