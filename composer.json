@@ -1,6 +1,6 @@
 {
     "name": "tavo1987/laravel-ec-validator",
-    "description": "Package to validate ruc and ci ecuador",
+    "description": "Package to validate ruc and ci Ecuador",
     "keywords": ["cedula", "laravel", "ecuador"],
     "type": "library",
     "license": "MIT",
@@ -11,10 +11,10 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "tavo1987/ec-validador-cedula-ruc": "~1.0.2",
-        "illuminate/validation": "^6.0.2",
-        "illuminate/support": "^6.0.2"
+        "php": "^7.2.5",
+        "tavo1987/ec-validador-cedula-ruc": "^1.0.2",
+        "illuminate/validation": "^7.4.0",
+        "illuminate/support": "^7.4.0"
     },
 
     "autoload": {
@@ -28,8 +28,8 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "~4.0.0",
-        "phpunit/phpunit": "^8.3.5"
+        "orchestra/testbench": "^5.1.0",
+        "phpunit/phpunit": "^9.1.1"
     },
 
     "config": {
