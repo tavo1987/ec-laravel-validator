@@ -7,7 +7,14 @@ use Tavo\EcLaravelValidator\EcValidatorServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
-    protected function getPackageProviders($app)
+    /**
+     * Get package providers.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     *
+     * @return array<int, class-string>
+     */
+    protected function getPackageProviders($app): array
     {
         return [EcValidatorServiceProvider::class];
     }
