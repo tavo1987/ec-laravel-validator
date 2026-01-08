@@ -1,5 +1,6 @@
 # Laravel Ecuador Validator
 
+[![Tests](https://github.com/tavo1987/ec-laravel-validator/actions/workflows/tests.yml/badge.svg)](https://github.com/tavo1987/ec-laravel-validator/actions/workflows/tests.yml)
 [![Latest Stable Version](https://poser.pugx.org/tavo1987/laravel-ec-validator/v/stable)](https://packagist.org/packages/tavo1987/laravel-ec-validator)
 [![Total Downloads](https://poser.pugx.org/tavo1987/laravel-ec-validator/downloads)](https://packagist.org/packages/tavo1987/laravel-ec-validator)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://packagist.org/packages/tavo1987/laravel-ec-validator)
