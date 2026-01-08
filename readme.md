@@ -95,6 +95,14 @@ class StoreClientRequest extends FormRequest
 }
 ```
 
+## What's New in v3.0.1
+
+### Bug Fixes
+
+- Updated `ec-validador-cedula-ruc` to v2.0.1
+- Fixed validation for private company RUCs (`ruc_spriv`) with 7-digit extended sequential numbers
+- Per SRI rules, RUCs exceeding 999999 in sequential value no longer require modulo 11 check digit validation
+
 ## What's New in v3.0.0
 
 ### Breaking Changes

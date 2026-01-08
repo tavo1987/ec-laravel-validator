@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "tavo1987/ec-validador-cedula-ruc": "^2.0",
+        "tavo1987/ec-validador-cedula-ruc": "^2.0.1",
         "illuminate/validation": "^11.0|^12.0",
         "illuminate/support": "^11.0|^12.0"
     },

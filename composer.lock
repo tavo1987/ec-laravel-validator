@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed8d0a2a0733fa2c76904847fbdbe0f6",
+    "content-hash": "08bb01528aa5b08beaf874090db5383b",
     "packages": [
         {
             "name": "brick/math",
@@ -5581,16 +5581,16 @@
         },
         {
             "name": "tavo1987/ec-validador-cedula-ruc",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tavo1987/ec-validador-cedula-ruc.git",
-                "reference": "182effcca0cf0e47963e469c652bb457a08ed135"
+                "reference": "a97cc0bd2afd4fbf199456f3bfaec0e5a416bec5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tavo1987/ec-validador-cedula-ruc/zipball/182effcca0cf0e47963e469c652bb457a08ed135",
-                "reference": "182effcca0cf0e47963e469c652bb457a08ed135",
+                "url": "https://api.github.com/repos/tavo1987/ec-validador-cedula-ruc/zipball/a97cc0bd2afd4fbf199456f3bfaec0e5a416bec5",
+                "reference": "a97cc0bd2afd4fbf199456f3bfaec0e5a416bec5",
                 "shasum": ""
             },
             "require": {
@@ -5633,9 +5633,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tavo1987/ec-validador-cedula-ruc/issues",
-                "source": "https://github.com/tavo1987/ec-validador-cedula-ruc/tree/v2.0.0"
+                "source": "https://github.com/tavo1987/ec-validador-cedula-ruc/tree/v2.0.1"
             },
-            "time": "2026-01-07T23:05:06+00:00"
+            "time": "2026-01-08T21:58:24+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
