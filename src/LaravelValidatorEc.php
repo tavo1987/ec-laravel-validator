@@ -16,18 +16,19 @@ class LaravelValidatorEc extends Validator
      * @var array<string, string>
      */
     private array $types = [
-        'ci' => 'validateCedula',
-        'ruc' => 'validateNaturalPersonRuc',
-        'ruc_spub' => 'validatePublicCompanyRuc',
+        'ci'        => 'validateCedula',
+        'ruc'       => 'validateNaturalPersonRuc',
+        'ruc_spub'  => 'validatePublicCompanyRuc',
         'ruc_spriv' => 'validatePrivateCompanyRuc',
     ];
 
     /**
      * Validate Ecuadorian identification numbers.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param string             $attribute
+     * @param mixed              $value
      * @param array<int, string> $parameters
+     *
      * @return bool
      */
     public function validateEcuador(string $attribute, mixed $value, array $parameters): bool
@@ -36,7 +37,7 @@ class LaravelValidatorEc extends Validator
 
         try {
             $type = $parameters[0] ?? '';
-            if (! isset($this->types[$type])) {
+            if (!isset($this->types[$type])) {
                 throw new Error("Custom validation rule ecuador:{$type} does not exist");
             }
             $this->isValid = $validator->{$this->types[$type]}($value);
@@ -46,7 +47,7 @@ class LaravelValidatorEc extends Validator
             $this->isValid = false;
         }
 
-        if (! $this->isValid) {
+        if (!$this->isValid) {
             $error = strtolower($validator->getError());
             $this->setCustomMessages(["{$attribute} : {$error}"]);
         }
