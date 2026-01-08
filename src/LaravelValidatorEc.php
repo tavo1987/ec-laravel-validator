@@ -8,32 +8,49 @@ use Tavo\ValidadorEc;
 
 class LaravelValidatorEc extends Validator
 {
-    private $isValid = false;
+    private bool $isValid = false;
 
-    private $types = [
-      'ci'        => 'validarCedula',
-      'ruc'       => 'validarRucPersonaNatural',
-      'ruc_spub'  => 'validarRucSociedadPublica',
-      'ruc_spriv' => 'validarRucSociedadPrivada'
+    /**
+     * Mapping of validation rule types to ValidadorEc methods.
+     *
+     * @var array<string, string>
+     */
+    private array $types = [
+        'ci'        => 'validateCedula',
+        'ruc'       => 'validateNaturalPersonRuc',
+        'ruc_spub'  => 'validatePublicCompanyRuc',
+        'ruc_spriv' => 'validatePrivateCompanyRuc',
     ];
 
-    public function validateEcuador($attribute, $value, $parameters)
+    /**
+     * Validate Ecuadorian identification numbers.
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @param array<int, string> $parameters
+     * @return bool
+     */
+    public function validateEcuador(string $attribute, mixed $value, array $parameters): bool
     {
         $validator = new ValidadorEc();
+
         try {
-            $this->isValid = $validator->{$this->types[$parameters[0]]}($value);
-        } catch (\Exception $exception) {
-            throw new Error("Custom validation rule ecuador:{$parameters[0]} does not exist");
+            $type = $parameters[0] ?? '';
+            if (!isset($this->types[$type])) {
+                throw new Error("Custom validation rule ecuador:{$type} does not exist");
+            }
+            $this->isValid = $validator->{$this->types[$type]}($value);
+        } catch (Error $error) {
+            throw $error;
+        } catch (\Throwable $throwable) {
+            $this->isValid = false;
         }
 
-
-        if ( !$this->isValid ) {
+        if (!$this->isValid) {
             $error = strtolower($validator->getError());
             $this->setCustomMessages(["{$attribute} : {$error}"]);
-
-            return $this->isValid;
         }
 
-        return $this->isValid ;
+        return $this->isValid;
     }
 }
