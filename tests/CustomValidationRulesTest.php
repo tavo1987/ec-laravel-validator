@@ -24,6 +24,19 @@ class CustomValidationRulesTest extends TestCase
     }
 
     #[Test]
+    public function ci_with_third_digit_six_requires_valid_check_digit(): void
+    {
+        $rules = ['ci' => 'required|string|ecuador:ci'];
+
+        // Synthetic fixtures differ only in the modulo 10 check digit.
+        $valid = $this->app['validator']->make(['ci' => '0160000014'], $rules);
+        $invalid = $this->app['validator']->make(['ci' => '0160000015'], $rules);
+
+        $this->assertTrue($valid->passes());
+        $this->assertFalse($invalid->passes());
+    }
+
+    #[Test]
     public function invalid_ci(): void
     {
         $rules = [
