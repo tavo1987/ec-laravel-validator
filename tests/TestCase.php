@@ -18,8 +18,8 @@ abstract class TestCase extends PHPUnitTestCase
     {
         parent::setUp();
 
-        $this->app = new Container;
-        $translator = new Translator(new ArrayLoader, 'en');
+        $this->app = new Container();
+        $translator = new Translator(new ArrayLoader(), 'en');
         $this->app->instance('validator', new Factory($translator, $this->app));
 
         Facade::clearResolvedInstances();
